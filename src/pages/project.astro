@@ -1,0 +1,206 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Projects - City Layers">
+
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">Our Projects</h1>
+            <p class="page-subtitle">Real communities, real participation, real impact</p>
+        </div>
+    </section>
+
+    <section style="padding: 100px 2rem;">
+        <div class="container">
+            <div class="projects-filters">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="urban-planning">Urban Planning</button>
+                <button class="filter-btn" data-filter="transport">Transport</button>
+                <button class="filter-btn" data-filter="green-spaces">Green Spaces</button>
+                <button class="filter-btn" data-filter="housing">Housing</button>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card" data-category="urban-planning">
+                    <div class="project-image">
+                        <div class="placeholder-text">Project Image</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tag">Urban Planning</span>
+                            <span class="project-tag">Vienna</span>
+                        </div>
+                        <h3 class="project-title">Downtown Revitalization Initiative</h3>
+                        <p class="project-description">Engaging 500+ residents to reimagine the city center with focus on pedestrian zones and public spaces.</p>
+                        <div class="project-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">523</span>
+                                <span class="stat-label">Participants</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">87</span>
+                                <span class="stat-label">Ideas</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">15</span>
+                                <span class="stat-label">Areas</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="transport">
+                    <div class="project-image">
+                        <div class="placeholder-text">Project Image</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tag">Transport</span>
+                            <span class="project-tag">Brussels</span>
+                        </div>
+                        <h3 class="project-title">Cycling Infrastructure Network</h3>
+                        <p class="project-description">Community-driven planning for 20km of new bike lanes connecting neighborhoods to the city center.</p>
+                        <div class="project-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">312</span>
+                                <span class="stat-label">Participants</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">65</span>
+                                <span class="stat-label">Ideas</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">8</span>
+                                <span class="stat-label">Routes</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="green-spaces">
+                    <div class="project-image">
+                        <div class="placeholder-text">Project Image</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tag">Green Spaces</span>
+                            <span class="project-tag">Amsterdam</span>
+                        </div>
+                        <h3 class="project-title">Neighborhood Park Redesign</h3>
+                        <p class="project-description">Collaborative design process for transforming an underused park into a vibrant community hub.</p>
+                        <div class="project-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">245</span>
+                                <span class="stat-label">Participants</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">42</span>
+                                <span class="stat-label">Ideas</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">5</span>
+                                <span class="stat-label">Zones</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="housing">
+                    <div class="project-image">
+                        <div class="placeholder-text">Project Image</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tag">Housing</span>
+                            <span class="project-tag">Berlin</span>
+                        </div>
+                        <h3 class="project-title">Affordable Housing Development</h3>
+                        <p class="project-description">Inclusive planning process for new mixed-income housing development with community facilities.</p>
+                        <div class="project-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">410</span>
+                                <span class="stat-label">Participants</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">73</span>
+                                <span class="stat-label">Ideas</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">3</span>
+                                <span class="stat-label">Sites</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="urban-planning">
+                    <div class="project-image">
+                        <div class="placeholder-text">Project Image</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tag">Urban Planning</span>
+                            <span class="project-tag">Copenhagen</span>
+                        </div>
+                        <h3 class="project-title">Waterfront Transformation</h3>
+                        <p class="project-description">Reimagining 2km of waterfront with focus on public access, sustainability, and recreation.</p>
+                        <div class="project-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">678</span>
+                                <span class="stat-label">Participants</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">103</span>
+                                <span class="stat-label">Ideas</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">12</span>
+                                <span class="stat-label">Areas</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="transport">
+                    <div class="project-image">
+                        <div class="placeholder-text">Project Image</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tag">Transport</span>
+                            <span class="project-tag">Paris</span>
+                        </div>
+                        <h3 class="project-title">15-Minute City Implementation</h3>
+                        <p class="project-description">Community mapping of essential services and infrastructure gaps to create walkable neighborhoods.</p>
+                        <div class="project-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">892</span>
+                                <span class="stat-label">Participants</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">156</span>
+                                <span class="stat-label">Ideas</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">25</span>
+                                <span class="stat-label">Districts</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Start Your Own Project</h2>
+            <p>Ready to engage your community in meaningful urban participation?</p>
+            <div class="cta-buttons">
+                <a href="/contact" class="btn btn-outline btn-large">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+</Layout>
