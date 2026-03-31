@@ -1,5 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import directus, { readItems } from '../lib/directus.ts';
+
+const posts = await directus.request(
+  readItems('blog_posts', {
+    filter: { published: { _eq: true } },
+    sort: ['-publish_date'],
+    fields: [
+      'title',
+      'slug',
+      'excerpt',
+      'publish_date',
+      'cover_image',
+      'author.full_name',
+      'author.photo',
+    ],
+  })
+);
 ---
 
 <Layout title="Blog & Resources - City Layers">
@@ -15,102 +32,43 @@ import Layout from '../layouts/Layout.astro';
         <div class="container">
             <div class="blog-grid">
                 <div class="blog-main">
-                    <article class="blog-article">
-                        <div class="article-image">
-                            <div class="placeholder-text">Article Featured Image</div>
-                        </div>
-                        <div class="article-content">
-                            <div class="article-meta">
-                                <span>📅 February 5, 2024</span>
-                                <span>📝 White Paper</span>
-                                <span>⏱️ 12 min read</span>
+                    {posts.map((post) => (
+                        <article class="blog-article">
+                            <div class="article-image">
+                                {post.cover_image ? (
+                                    <img
+                                        src={`${import.meta.env.PUBLIC_DIRECTUS_URL}/assets/${post.cover_image}`}
+                                        alt={post.title}
+                                        style="width: 100%; height: 100%; object-fit: cover;"
+                                    />
+                                ) : (
+                                    <div class="placeholder-text">Article Featured Image</div>
+                                )}
                             </div>
-                            <h2 class="article-title">
-                                <a href="#">The Future of Digital Urban Participation: Trends and Opportunities</a>
-                            </h2>
-                            <p class="article-excerpt">
-                                Exploring how digital tools are transforming citizen engagement in urban planning, with case studies from European cities and analysis of emerging participation models.
-                            </p>
-                            <a href="#" class="read-more">Read Full Paper →</a>
-                        </div>
-                    </article>
-
-                    <article class="blog-article">
-                        <div class="article-image">
-                            <div class="placeholder-text">Article Featured Image</div>
-                        </div>
-                        <div class="article-content">
-                            <div class="article-meta">
-                                <span>📅 January 28, 2024</span>
-                                <span>📝 Research</span>
-                                <span>⏱️ 8 min read</span>
+                            <div class="article-content">
+                                <div class="article-meta">
+                                    <span>📅 {new Date(post.publish_date).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                                    {post.author && <span>✍️ {post.author.full_name}</span>}
+                                </div>
+                                <h2 class="article-title">
+                                    <a href={`/blog/${post.slug}`}>{post.title}</a>
+                                </h2>
+                                <p class="article-excerpt">{post.excerpt}</p>
+                                <a href={`/blog/${post.slug}`} class="read-more">Read More →</a>
                             </div>
-                            <h2 class="article-title">
-                                <a href="#">Inclusive Design in Urban Participation Platforms</a>
-                            </h2>
-                            <p class="article-excerpt">
-                                How to ensure digital participation tools are accessible to all community members, including those with limited digital literacy or disabilities.
-                            </p>
-                            <a href="#" class="read-more">Read More →</a>
-                        </div>
-                    </article>
-
-                    <article class="blog-article">
-                        <div class="article-image">
-                            <div class="placeholder-text">Article Featured Image</div>
-                        </div>
-                        <div class="article-content">
-                            <div class="article-meta">
-                                <span>📅 January 15, 2024</span>
-                                <span>📝 Case Study</span>
-                                <span>⏱️ 10 min read</span>
-                            </div>
-                            <h2 class="article-title">
-                                <a href="#">Vienna's Downtown Revitalization: A Participation Success Story</a>
-                            </h2>
-                            <p class="article-excerpt">
-                                Deep dive into how City Layers facilitated meaningful community input for Vienna's city center transformation, resulting in actionable insights and broad public support.
-                            </p>
-                            <a href="#" class="read-more">Read Case Study →</a>
-                        </div>
-                    </article>
+                        </article>
+                    ))}
                 </div>
 
                 <aside class="blog-sidebar">
                     <div class="sidebar-widget">
-                        <h3 class="widget-title">Key Terms Glossary</h3>
-                        <ul class="glossary-list">
-                            <li>
-                                <span class="glossary-term">Participatory Planning</span>
-                                <p class="glossary-definition">An urban planning approach that actively involves all stakeholders in the strategy and decision-making processes.</p>
-                            </li>
-                            <li>
-                                <span class="glossary-term">Digital Engagement</span>
-                                <p class="glossary-definition">Use of digital tools and platforms to facilitate public participation in civic and planning processes.</p>
-                            </li>
-                            <li>
-                                <span class="glossary-term">Spatial Analysis</span>
-                                <p class="glossary-definition">Examination of geographic data to identify patterns, relationships, and trends in urban environments.</p>
-                            </li>
-                            <li>
-                                <span class="glossary-term">Co-creation</span>
-                                <p class="glossary-definition">Collaborative process where stakeholders jointly develop solutions to urban challenges.</p>
-                            </li>
-                            <li>
-                                <span class="glossary-term">Placemaking</span>
-                                <p class="glossary-definition">Community-driven approach to designing public spaces that promote people's health, happiness, and wellbeing.</p>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="sidebar-widget">
                         <h3 class="widget-title">Categories</h3>
                         <ul class="category-list">
-                            <li><a href="#">White Papers <span class="category-count">8</span></a></li>
-                            <li><a href="#">Case Studies <span class="category-count">12</span></a></li>
-                            <li><a href="#">Research <span class="category-count">15</span></a></li>
-                            <li><a href="#">Guides <span class="category-count">6</span></a></li>
-                            <li><a href="#">News <span class="category-count">23</span></a></li>
+                            <li><a href="#">White Papers</a></li>
+                            <li><a href="#">Case Studies</a></li>
+                            <li><a href="#">Research</a></li>
+                            <li><a href="#">Guides</a></li>
+                            <li><a href="#">News</a></li>
                         </ul>
                     </div>
 

@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import directus, { readItems } from '../../lib/directus.ts';
+
+export async function getStaticPaths() {
+  const projects = await directus.request(
+    readItems('projects', {
+      filter: { published: { _eq: true } },
+      fields: ['project_name', 'slug', 'summary', 'description', 'cover_image', 'date'],
+    })
+  );
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+console.log('Project data:', JSON.stringify(project));
+---
+
+<Layout title={`${project.project_name} - City Layers`}>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">{project.project_name}</h1>
+            <p class="page-subtitle">{project.summary}</p>
+        </div>
+    </section>
+
+    <section style="padding: 80px 2rem;">
+        <div class="container">
+            <div class="story-content">
+                <div class="story-text">
+                    {project.cover_image && (
+                        <img
+                            src={`${import.meta.env.PUBLIC_DIRECTUS_URL}/assets/${project.cover_image}`}
+                            alt={project.project_name}
+                            style="width: 100%; border-radius: 8px; margin-bottom: 2rem;"
+                        />
+                    )}
+                    <Fragment set:html={project.description} />
+                </div>
+            </div>
+            <div style="margin-top: 3rem;">
+                <a href="/project" class="btn btn-secondary">← Back to Projects</a>
+            </div>
+        </div>
+    </section>
+
+</Layout>

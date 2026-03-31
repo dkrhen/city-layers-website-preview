@@ -1,0 +1,129 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import directus, { readItems } from '../../lib/directus.ts';
+
+export async function getStaticPaths() {
+  const posts = await directus.request(
+    readItems('blog_posts', {
+      filter: { published: { _eq: true } },
+      fields: [
+        'title',
+        'slug',
+        'excerpt',
+        'text_body',
+        'publish_date',
+        'cover_image',
+        'author.full_name',
+        'author.photo',
+        'key_terms.key_terms_id.term',
+        'key_terms.key_terms_id.definition',
+      ],
+    })
+  );
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+---
+
+<Layout title={`${post.title} - City Layers`}>
+
+<style>
+    .article-body {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: var(--text-dark);
+    }
+    .article-body p {
+        margin-bottom: 1.5rem;
+    }
+    .article-body h2, .article-body h3 {
+        margin: 2rem 0 1rem;
+    }
+    .blog-grid {
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 3rem;
+        align-items: start;
+    }
+    @media (max-width: 768px) {
+        .blog-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">{post.title}</h1>
+            <div class="article-meta" style="margin-top: 1rem;">
+                <span>📅 {new Date(post.publish_date).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                {post.author && <span style="margin-left: 1rem;">✍️ {post.author.full_name}</span>}
+            </div>
+        </div>
+    </section>
+
+    <section style="padding: 80px 2rem;">
+        <div class="container">
+            <div class="blog-grid">
+                <div class="blog-main">
+
+                        {post.cover_image && (
+                        <div style="width: 100%; height: 500px; border-radius: 12px; overflow: hidden; margin-bottom: 2rem;">
+                            <img
+                                src={`${import.meta.env.PUBLIC_DIRECTUS_URL}/assets/${post.cover_image}`}
+                                alt={post.title}
+                                style="width: 100%; height: 100%; object-fit: cover; object-position: center;"
+                            />
+                        </div>
+                    )}
+
+                    <div class="article-body">
+                        <Fragment set:html={post.text_body} />
+                    </div>
+
+                    <div style="margin-top: 3rem;">
+                        <a href="/blog" class="btn btn-secondary">← Back to Blog</a>
+                    </div>
+
+                </div>
+
+                <aside class="blog-sidebar">
+
+                    {post.author && (
+                        <div class="sidebar-widget">
+                            <h3 class="widget-title">About the Author</h3>
+                            {post.author.photo && (
+                                <img
+                                    src={`${import.meta.env.PUBLIC_DIRECTUS_URL}/assets/${post.author.photo}`}
+                                    alt={post.author.full_name}
+                                    style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 1rem;"
+                                />
+                            )}
+                            <p style="font-weight: 500;">{post.author.full_name}</p>
+                        </div>
+                    )}
+
+                    {post.key_terms && post.key_terms.length > 0 && (
+                        <div class="sidebar-widget">
+                            <h3 class="widget-title">Key Terms</h3>
+                            <ul class="glossary-list">
+                                {(post.key_terms as any[]).map((item) => (
+                                    <li>
+                                        <span class="glossary-term">{item.key_terms_id.term}</span>
+                                        <p class="glossary-definition">{item.key_terms_id.definition}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+
+                </aside>
+            </div>
+        </div>
+    </section>
+
+</Layout>
