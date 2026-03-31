@@ -13,8 +13,14 @@ const posts = await directus.request(
       'publish_date',
       'cover_image',
       'author.full_name',
-      'author.photo',
     ],
+  })
+);
+
+const glossary = await directus.request(
+  readItems('key_terms', {
+    sort: ['term'],
+    fields: ['term', 'definition', 'category'],
   })
 );
 ---
@@ -31,6 +37,8 @@ const posts = await directus.request(
     <section style="padding: 100px 2rem;">
         <div class="container">
             <div class="blog-grid">
+
+                <!-- Blog Posts -->
                 <div class="blog-main">
                     {posts.map((post) => (
                         <article class="blog-article">
@@ -60,7 +68,21 @@ const posts = await directus.request(
                     ))}
                 </div>
 
+                <!-- Sidebar -->
                 <aside class="blog-sidebar">
+
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">Key Terms Glossary</h3>
+                        <ul class="glossary-list">
+                            {glossary.map((item) => (
+                                <li>
+                                    <span class="glossary-term">{item.term}</span>
+                                    <p class="glossary-definition">{item.definition}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
                     <div class="sidebar-widget">
                         <h3 class="widget-title">Categories</h3>
                         <ul class="category-list">
@@ -74,13 +96,28 @@ const posts = await directus.request(
 
                     <div class="sidebar-widget">
                         <h3 class="widget-title">Newsletter</h3>
-                        <p style="margin-bottom: 1rem; color: var(--text-medium); font-size: 0.95rem;">Get the latest insights on urban participation delivered to your inbox.</p>
+                        <p style="margin-bottom: 1rem; color: var(--text-medium); font-size: 0.95rem;">
+                            Get the latest insights on urban participation delivered to your inbox.
+                        </p>
                         <form class="newsletter-form" style="flex-direction: column;">
-                            <input type="email" placeholder="Your email" class="newsletter-input" style="border: 2px solid var(--gray-200); color: var(--text-dark);">
-                            <button type="submit" class="newsletter-btn" style="width: 100%; background: var(--primary-color);">Subscribe</button>
+                            <input
+                                type="email"
+                                placeholder="Your email"
+                                class="newsletter-input"
+                                style="border: 2px solid var(--gray-200); color: var(--text-dark);"
+                            />
+                            <button
+                                type="submit"
+                                class="newsletter-btn"
+                                style="width: 100%; background: var(--primary-color);"
+                            >
+                                Subscribe
+                            </button>
                         </form>
                     </div>
+
                 </aside>
+
             </div>
         </div>
     </section>
