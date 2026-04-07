@@ -10,7 +10,7 @@ import Layout from '../layouts/Layout.astro';
             <p class="hero-subtitle">Empowering communities through inclusive, modern, and accessible urban participation tools</p>
             <div class="hero-cta">
                 <a href="/contact" class="btn btn-primary">Get Started</a>
-                <a href="/project" class="btn btn-secondary">View Projects</a>
+                <a href="/projects" class="btn btn-secondary">View Projects</a>
             </div>
         </div>
         <div class="hero-visual">
@@ -32,7 +32,8 @@ import Layout from '../layouts/Layout.astro';
         </div>
     </section>
 
-    <section class="what-we-do">
+    <!-- Adjust the padding-top value below to control distance from hero to next section -->
+    <section class="what-we-do" style="padding-top: 2rem;">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Solving Urban Challenges Together</h2>
@@ -58,70 +59,85 @@ import Layout from '../layouts/Layout.astro';
         </div>
     </section>
 
+    <!-- Video & How It Works Section -->
     <section class="demo-section">
         <div class="container">
-            <h2 class="section-title">Experience the Process</h2>
-            <p class="section-description">See how City Layers makes urban participation simple and engaging</p>
-            <div class="demo-container">
-                <div class="map-demo">
-                    <div class="map-interface">
-                        <div class="map-header">
-                            <h3>Sample Project: Downtown Revitalization</h3>
-                            <div class="map-stats">
-                                <span class="stat"><strong>127</strong> Participants</span>
-                                <span class="stat"><strong>45</strong> Ideas</span>
-                                <span class="stat"><strong>12</strong> Zones</span>
-                            </div>
-                        </div>
-                        <div class="map-canvas">
-                            <div class="map-placeholder">
-                                <div class="map-marker" style="top: 30%; left: 40%;" data-category="green">
-                                    <span class="marker-dot green"></span>
-                                    <div class="marker-tooltip">More green spaces</div>
-                                </div>
-                                <div class="map-marker" style="top: 60%; left: 60%;" data-category="transport">
-                                    <span class="marker-dot blue"></span>
-                                    <div class="marker-tooltip">Bike lane needed</div>
-                                </div>
-                                <div class="map-marker" style="top: 45%; left: 70%;" data-category="community">
-                                    <span class="marker-dot orange"></span>
-                                    <div class="marker-tooltip">Community center</div>
-                                </div>
-                                <div class="map-marker" style="top: 75%; left: 35%;" data-category="safety">
-                                    <span class="marker-dot red"></span>
-                                    <div class="marker-tooltip">Better lighting</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="map-legend">
-                            <div class="legend-item"><span class="legend-dot green"></span> Green Spaces</div>
-                            <div class="legend-item"><span class="legend-dot blue"></span> Transport</div>
-                            <div class="legend-item"><span class="legend-dot orange"></span> Community</div>
-                            <div class="legend-item"><span class="legend-dot red"></span> Safety</div>
-                        </div>
-                    </div>
+
+            <!-- Centered title -->
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h2 class="section-title">Experience the Process</h2>
+                <p class="section-description">See how City Layers makes urban participation simple and engaging</p>
+            </div>
+
+            <!-- Centered video placeholder -->
+            <div style="
+                width: 100%;
+                max-width: 800px;
+                margin: 0 auto 3rem;
+                min-height: 360px;
+                background: var(--gray-100, #f0f0f0);
+                border-radius: 12px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                border: 2px dashed var(--gray-300, #ccc);
+                gap: 1rem;
+            ">
+                <div style="font-size: 3rem;">▶️</div>
+                <p style="font-size: 1.1rem; font-weight: 500; color: var(--text-medium, #666);">Video will be here</p>
+                <p style="font-size: 0.9rem; color: var(--text-light, #999);">Platform walkthrough coming soon</p>
+            </div>
+
+            <!-- How It Works in a row -->
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-bottom: 3rem;">
+                <div style="text-align: center;">
+                    <div style="
+                        width: 52px; height: 52px; border-radius: 50%;
+                        background: var(--primary-color);
+                        color: white;
+                        display: flex; align-items: center; justify-content: center;
+                        font-size: 1.2rem; font-weight: 700;
+                        margin: 0 auto 0.75rem;
+                    ">01</div>
+                    <strong>Launch Your Project</strong>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--text-medium, #666);">Define your urban planning goals and area of focus</p>
                 </div>
-                <div class="demo-info">
-                    <h3>How It Works</h3>
-                    <ol class="process-steps">
-                        <li>
-                            <strong>Launch Your Project</strong>
-                            <p>Define your urban planning goals and area of focus</p>
-                        </li>
-                        <li>
-                            <strong>Invite Community</strong>
-                            <p>Share with residents through multiple channels</p>
-                        </li>
-                        <li>
-                            <strong>Collect Insights</strong>
-                            <p>Gather location-based feedback and ideas</p>
-                        </li>
-                        <li>
-                            <strong>Analyze & Act</strong>
-                            <p>Turn data into actionable urban improvements</p>
-                        </li>
-                    </ol>
-                    <a href="/contact" class="btn btn-primary">Start Your Project</a>
+                <div style="text-align: center;">
+                    <div style="
+                        width: 52px; height: 52px; border-radius: 50%;
+                        background: var(--primary-color);
+                        color: white;
+                        display: flex; align-items: center; justify-content: center;
+                        font-size: 1.2rem; font-weight: 700;
+                        margin: 0 auto 0.75rem;
+                    ">02</div>
+                    <strong>Invite Community</strong>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--text-medium, #666);">Share with residents through multiple channels</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="
+                        width: 52px; height: 52px; border-radius: 50%;
+                        background: var(--primary-color);
+                        color: white;
+                        display: flex; align-items: center; justify-content: center;
+                        font-size: 1.2rem; font-weight: 700;
+                        margin: 0 auto 0.75rem;
+                    ">03</div>
+                    <strong>Collect Insights</strong>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--text-medium, #666);">Gather location-based feedback and ideas</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="
+                        width: 52px; height: 52px; border-radius: 50%;
+                        background: var(--primary-color);
+                        color: white;
+                        display: flex; align-items: center; justify-content: center;
+                        font-size: 1.2rem; font-weight: 700;
+                        margin: 0 auto 0.75rem;
+                    ">04</div>
+                    <strong>Analyze & Act</strong>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--text-medium, #666);">Turn data into actionable urban improvements</p>
                 </div>
             </div>
         </div>
