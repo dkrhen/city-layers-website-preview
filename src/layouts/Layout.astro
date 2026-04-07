@@ -16,21 +16,20 @@ const { title = "City Layers - Inclusive Urban Participation Platform" } = Astro
         <div class="nav-container">
             <a href="/" class="logo">
                 <img src="/logo.svg" alt="City Layers" class="logo-img">
-            </a>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="/projects" class={`nav-link ${Astro.url.pathname.startsWith('/projects') ? 'active' : ''}`}>Projects</a></li>
-                <li><a href="/blog" class={`nav-link ${Astro.url.pathname.startsWith('/blog') ? 'active' : ''}`}>Blog</a></li>
-                <li><a href="/capabilities" class={`nav-link ${Astro.url.pathname.startsWith('/capabilities') ? 'active' : ''}`}>Capabilities</a></li>
-                <li><a href="/about" class={`nav-link ${Astro.url.pathname.startsWith('/about') ? 'active' : ''}`}>About</a></li>
-                <li><a href="/contact" class={`nav-link ${Astro.url.pathname.startsWith('/contact') ? 'active' : ''}`}>Contact</a></li>
-            </ul>
-            <button class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
+        </a>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="/projects" class={`nav-link ${Astro.url.pathname.startsWith('/projects') ? 'active' : ''}`}>Projects</a></li>
+            <li><a href="/blog" class={`nav-link ${Astro.url.pathname.startsWith('/blog') ? 'active' : ''}`}>Blog</a></li>
+            <li><a href="/capabilities" class={`nav-link ${Astro.url.pathname.startsWith('/capabilities') ? 'active' : ''}`}>Capabilities</a></li>
+            <li><a href="/about" class={`nav-link ${Astro.url.pathname.startsWith('/about') ? 'active' : ''}`}>About</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</nav>
 
     <slot />
 
@@ -82,5 +81,30 @@ const { title = "City Layers - Inclusive Urban Participation Platform" } = Astro
     </footer>
 
     <script src="/script.js" is:inline></script>
+<!-- Floating Contact Button -->
+<a href="/contact" class="floating-contact">Contact Us!</a>
+
+<style>
+.floating-contact {
+    position: fixed;
+    top: 1.25rem;
+    right: 2rem;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    z-index: 1001;
+    border: 2px solid var(--primary-color);
+    transition: all 0.2s ease;
+}
+.floating-contact:hover {
+    background: white;
+    color: var(--primary-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+</style>
 </body>
 </html>
