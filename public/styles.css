@@ -98,12 +98,12 @@ body {
     transform: translateX(-50%);
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 3rem;
     align-items: center;
 }
 
 .nav-link {
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: 500;
     color: #1A1A80;
     text-decoration: none;
@@ -118,12 +118,12 @@ body {
     left: 0;
     width: 0;
     height: 2px;
-    background: #6B6BFF;
+    background: #1A1A80;
     transition: width 0.3s ease;
 }
 
 .nav-link:hover {
-    color: #6B6BFF;
+    color: #1A1A80;
 }
 
 .nav-link:hover::after {
@@ -587,7 +587,7 @@ section {
 
 /* CTA Section */
 .cta-section {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    background: linear-gradient(135deg, rgb(107, 107, 255) 0%, rgb(88, 152, 232) 45%, rgb(96, 212, 192) 100%);
     color: var(--white);
     text-align: center;
     border-radius: 24px;

@@ -32,7 +32,6 @@ import Layout from '../layouts/Layout.astro';
         </div>
     </section>
 
-    <!-- Adjust the padding-top value below to control distance from hero to next section -->
     <section class="what-we-do" style="padding-top: 2rem;">
         <div class="container">
             <div class="section-header">
@@ -59,17 +58,13 @@ import Layout from '../layouts/Layout.astro';
         </div>
     </section>
 
-    <!-- Video & How It Works Section -->
     <section class="demo-section">
         <div class="container">
-
-            <!-- Centered title -->
             <div style="text-align: center; margin-bottom: 3rem;">
                 <h2 class="section-title">Experience the Process</h2>
                 <p class="section-description">See how City Layers makes urban participation simple and engaging</p>
             </div>
 
-            <!-- Centered video placeholder -->
             <div style="
                 width: 100%;
                 max-width: 800px;
@@ -89,53 +84,24 @@ import Layout from '../layouts/Layout.astro';
                 <p style="font-size: 0.9rem; color: var(--text-light, #999);">Platform walkthrough coming soon</p>
             </div>
 
-            <!-- How It Works in a row -->
             <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-bottom: 3rem;">
                 <div style="text-align: center;">
-                    <div style="
-                        width: 52px; height: 52px; border-radius: 50%;
-                        background: var(--primary-color);
-                        color: white;
-                        display: flex; align-items: center; justify-content: center;
-                        font-size: 1.2rem; font-weight: 700;
-                        margin: 0 auto 0.75rem;
-                    ">01</div>
+                    <div style="width: 52px; height: 52px; border-radius: 50%; background: var(--primary-color); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; margin: 0 auto 0.75rem;">01</div>
                     <strong>Launch Your Project</strong>
                     <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--text-medium, #666);">Define your urban planning goals and area of focus</p>
                 </div>
                 <div style="text-align: center;">
-                    <div style="
-                        width: 52px; height: 52px; border-radius: 50%;
-                        background: var(--primary-color);
-                        color: white;
-                        display: flex; align-items: center; justify-content: center;
-                        font-size: 1.2rem; font-weight: 700;
-                        margin: 0 auto 0.75rem;
-                    ">02</div>
+                    <div style="width: 52px; height: 52px; border-radius: 50%; background: var(--primary-color); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; margin: 0 auto 0.75rem;">02</div>
                     <strong>Invite Community</strong>
                     <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--text-medium, #666);">Share with residents through multiple channels</p>
                 </div>
                 <div style="text-align: center;">
-                    <div style="
-                        width: 52px; height: 52px; border-radius: 50%;
-                        background: var(--primary-color);
-                        color: white;
-                        display: flex; align-items: center; justify-content: center;
-                        font-size: 1.2rem; font-weight: 700;
-                        margin: 0 auto 0.75rem;
-                    ">03</div>
+                    <div style="width: 52px; height: 52px; border-radius: 50%; background: var(--primary-color); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; margin: 0 auto 0.75rem;">03</div>
                     <strong>Collect Insights</strong>
                     <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--text-medium, #666);">Gather location-based feedback and ideas</p>
                 </div>
                 <div style="text-align: center;">
-                    <div style="
-                        width: 52px; height: 52px; border-radius: 50%;
-                        background: var(--primary-color);
-                        color: white;
-                        display: flex; align-items: center; justify-content: center;
-                        font-size: 1.2rem; font-weight: 700;
-                        margin: 0 auto 0.75rem;
-                    ">04</div>
+                    <div style="width: 52px; height: 52px; border-radius: 50%; background: var(--primary-color); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; margin: 0 auto 0.75rem;">04</div>
                     <strong>Analyze & Act</strong>
                     <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--text-medium, #666);">Turn data into actionable urban improvements</p>
                 </div>
@@ -143,14 +109,39 @@ import Layout from '../layouts/Layout.astro';
         </div>
     </section>
 
+    <div style="margin-top: 3rem;"></div>
+
     <section class="cta-section">
         <div class="container">
             <h2>Ready to Transform Urban Participation?</h2>
             <p>Join cities and communities already using City Layers to create better urban spaces together.</p>
             <div class="cta-buttons">
-                <a href="/contact" class="btn btn-primary btn-large">Get in Touch</a>
+                <a href="/contact" class="btn btn-outline btn-large">Get in Touch</a>
             </div>
         </div>
     </section>
 
 </Layout>
+
+<style>
+.btn-cta-white {
+    display: inline-block;
+    padding: 1.25rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    background: white;
+    color: var(--primary-color);
+    border: 2px solid white;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+.btn-cta-white:hover {
+    background: transparent;
+    color: white;
+    border-color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+</style>
