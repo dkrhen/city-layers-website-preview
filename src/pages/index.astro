@@ -5,34 +5,36 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="City Layers - Inclusive Urban Participation Platform">
 
     <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">
-                <span class="rotating-word-wrapper">
-                    <span class="rotating-word" id="rotatingWord">City</span>
-                </span>
-                <br>Layers
-            </h1>
-            <p class="hero-subtitle">Revealing Urban Complexities through Everyday Experiences</p>
-            <div class="hero-cta">
-                <a href="/contact" class="btn btn-primary">Get Started</a>
-                <a href="/projects" class="btn btn-secondary">View Projects</a>
+        <div class="hero-inner">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="rotating-word-wrapper">
+                        <span class="rotating-word" id="rotatingWord">City</span>
+                    </span>
+                    <br>Layers
+                </h1>
+                <p class="hero-subtitle">Revealing Urban Complexities through Everyday Experiences</p>
+                <div class="hero-cta">
+                    <a href="/contact" class="btn btn-primary">Get Started</a>
+                    <a href="/projects" class="btn btn-secondary">View Projects</a>
+                </div>
             </div>
-        </div>
-        <div class="hero-visual">
-            <div class="floating-card">
-                <div class="card-icon">🗺️</div>
-                <h3>Interactive Mapping</h3>
-                <p>Engage citizens through visual collaboration</p>
-            </div>
-            <div class="floating-card card-delay-1">
-                <div class="card-icon">💬</div>
-                <h3>Community Voice</h3>
-                <p>Amplify local perspectives and needs</p>
-            </div>
-            <div class="floating-card card-delay-2">
-                <div class="card-icon">📊</div>
-                <h3>Data-Driven Insights</h3>
-                <p>Transform feedback into actionable solutions</p>
+            <div class="hero-visual">
+                <div class="floating-card">
+                    <div class="card-icon">🗺️</div>
+                    <h3>Interactive Mapping</h3>
+                    <p>Engage citizens through visual collaboration</p>
+                </div>
+                <div class="floating-card card-delay-1">
+                    <div class="card-icon">💬</div>
+                    <h3>Community Voice</h3>
+                    <p>Amplify local perspectives and needs</p>
+                </div>
+                <div class="floating-card card-delay-2">
+                    <div class="card-icon">📊</div>
+                    <h3>Data-Driven Insights</h3>
+                    <p>Transform feedback into actionable solutions</p>
+                </div>
             </div>
         </div>
     </section>
@@ -133,10 +135,12 @@ import Layout from '../layouts/Layout.astro';
     display: inline-block;
     overflow: hidden;
     vertical-align: bottom;
+    min-width: 600px;
 }
 
 .rotating-word {
     display: inline-block;
+    font-family: 'Figtree', sans-serif;
     background: linear-gradient(135deg, rgb(107, 107, 255) 0%, rgb(88, 152, 232) 45%, rgb(96, 212, 192) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -164,7 +168,7 @@ setInterval(() => {
     current = (current + 1) % words.length;
     const el = document.getElementById('rotatingWord');
     el.style.animation = 'none';
-    el.offsetHeight; // trigger reflow
+    el.offsetHeight;
     el.textContent = words[current];
     el.style.animation = 'fadeSlide 0.8s ease forwards';
 }, 2000);
