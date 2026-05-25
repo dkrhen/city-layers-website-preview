@@ -6,8 +6,13 @@ import Layout from '../layouts/Layout.astro';
 
     <section class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">A New Way to Shape Our Cities!</h1>
-            <p class="hero-subtitle">Empowering communities through inclusive, modern, and accessible urban participation tools</p>
+            <h1 class="hero-title">
+                <span class="rotating-word-wrapper">
+                    <span class="rotating-word" id="rotatingWord">City</span>
+                </span>
+                <br>Layers
+            </h1>
+            <p class="hero-subtitle">Revealing Urban Complexities through Everyday Experiences</p>
             <div class="hero-cta">
                 <a href="/contact" class="btn btn-primary">Get Started</a>
                 <a href="/projects" class="btn btn-secondary">View Projects</a>
@@ -17,7 +22,7 @@ import Layout from '../layouts/Layout.astro';
             <div class="floating-card">
                 <div class="card-icon">🗺️</div>
                 <h3>Interactive Mapping</h3>
-                <p>Engage citizens through VISUAL collaboration</p>
+                <p>Engage citizens through visual collaboration</p>
             </div>
             <div class="floating-card card-delay-1">
                 <div class="card-icon">💬</div>
@@ -35,8 +40,8 @@ import Layout from '../layouts/Layout.astro';
     <section class="what-we-do" style="padding-top: 2rem;">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Solving Urban Challenges Together</h2>
-                <p class="section-description">City Layers is a digital participation platform that makes urban planning accessible, inclusive, and effective. We bridge the gap between communities and decision-makers through innovative technology.</p>
+                <h2 class="section-title">From Urban Challenges To Everyday Experience</h2>
+                <p class="section-description">City Layers is a transdisciplinary framework that translates complex urban phenomena into accessible layers of everyday experience. Our citizen science methodology bridges community insights with expert knowledge, while our digital platform enables intuitive participatory mapping and sophisticated data visualization</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
@@ -124,24 +129,43 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
-.btn-cta-white {
+.rotating-word-wrapper {
     display: inline-block;
-    padding: 1.25rem 2.5rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    text-decoration: none;
-    border-radius: 8px;
-    background: white;
-    color: var(--primary-color);
-    border: 2px solid white;
-    transition: all 0.2s ease;
-    cursor: pointer;
+    overflow: hidden;
+    vertical-align: bottom;
 }
-.btn-cta-white:hover {
-    background: transparent;
-    color: white;
-    border-color: white;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    transform: translateY(-2px);
+
+.rotating-word {
+    display: inline-block;
+    background: linear-gradient(135deg, rgb(107, 107, 255) 0%, rgb(88, 152, 232) 45%, rgb(96, 212, 192) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeSlide 0.5s ease forwards;
+}
+
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 </style>
+
+<script is:inline>
+const words = ["City", "Mobility", "Safety", "Nature", "Experience"];
+let current = 0;
+
+setInterval(() => {
+    current = (current + 1) % words.length;
+    const el = document.getElementById('rotatingWord');
+    el.style.animation = 'none';
+    el.offsetHeight; // trigger reflow
+    el.textContent = words[current];
+    el.style.animation = 'fadeSlide 0.8s ease forwards';
+}, 2000);
+</script>

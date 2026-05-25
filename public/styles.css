@@ -18,6 +18,8 @@
     --shadow-md: 0 4px 12px rgba(1, 71, 81, 0.12);
     --shadow-lg: 0 8px 24px rgba(1, 71, 81, 0.15);
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --font-figtree: 'Figtree', sans-serif;
+    --font-space-grotesk: 'Space Grotesk', sans-serif;
 }
 
 * {
@@ -31,7 +33,7 @@ html {
 }
 
 body {
-    font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--font-figtree), var(--font-space-grotesk), sans-serif;
     color: var(--text-dark);
     line-height: 1.7;
     background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
@@ -84,7 +86,7 @@ body {
 }
 
 .logo-text {
-    font-family: 'Libre Baskerville', serif;
+    font-family: var(--font-figtree);
     letter-spacing: -0.02em;
 }
 
@@ -174,11 +176,11 @@ body {
 }
 
 .hero-title {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 4rem;
+    font-family: var(--font-figtree);
+    font-size: 6rem;
     line-height: 1.15;
-    color: var(--text-dark);
-    margin-bottom: 1.5rem;
+    color: var(--text-medium);
+    margin-bottom: 1.8rem;
     letter-spacing: -0.03em;
 }
 
@@ -258,7 +260,7 @@ body {
 
 .floating-card {
     position: absolute;
-    background: var(--white);
+    background: linear-gradient(135deg, rgb(107, 107, 255) 0%, rgb(88, 152, 232) 45%, rgb(96, 212, 192) 100%);
     padding: 2rem;
     border-radius: 16px;
     box-shadow: var(--shadow-lg);
@@ -291,12 +293,12 @@ body {
 .floating-card h3 {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
-    color: var(--primary-color);
+    color: white;
 }
 
 .floating-card p {
     font-size: 0.95rem;
-    color: var(--text-medium);
+    color: rgba(255, 255, 255, 0.85);
 }
 
 /* Sections */
@@ -311,7 +313,7 @@ section {
 }
 
 .section-title {
-    font-family: 'Libre Baskerville', serif;
+    font-family: var(--font-figtree);
     font-size: 3rem;
     margin-bottom: 1.5rem;
     color: var(--text-dark);
@@ -364,7 +366,7 @@ section {
 }
 
 .feature-number {
-    font-family: 'Libre Baskerville', serif;
+    font-family: var(--font-figtree);
     font-size: 3rem;
     color: var(--primary-color);
     opacity: 0.1;
@@ -596,7 +598,7 @@ section {
 }
 
 .cta-section h2 {
-    font-family: 'Libre Baskerville', serif;
+    font-family: 'Figtree', sans-serif;
     font-size: 2.5rem;
     margin-bottom: 1rem;
     letter-spacing: -0.02em;
