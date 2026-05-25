@@ -13,9 +13,9 @@ const { title = "City Layers - Inclusive Urban Participation Platform" } = Astro
 </head>
 <body>
     <nav class="nav">
-        <div class="nav-container">
-            <a href="/" class="logo">
-                <img src="/logo.svg" alt="City Layers" class="logo-img">
+    <div class="nav-container">
+        <a href="/" class="logo">
+            <img src="/logo.svg" alt="City Layers" class="logo-img">
         </a>
         <ul class="nav-menu" id="navMenu">
             <li><a href="/projects" class={`nav-link ${Astro.url.pathname.startsWith('/projects') ? 'active' : ''}`}>Projects</a></li>
@@ -51,7 +51,7 @@ const { title = "City Layers - Inclusive Urban Participation Platform" } = Astro
                 <h4>Platform</h4>
                 <ul class="footer-links">
                     <li><a href="/projects">Projects</a></li>
-                    <li><a href="/capabilites">Capabilites</a></li>
+                    <li><a href="/capabilities">Capabilities</a></li>
                     <li><a href="/contact">Contact</a></li>
                 </ul>
             </div>
@@ -82,30 +82,68 @@ const { title = "City Layers - Inclusive Urban Participation Platform" } = Astro
     </footer>
 
     <script src="/script.js" is:inline></script>
-<!-- Floating Contact Button -->
-<a href="/contact" class="floating-contact">Contact Us!</a>
 
-<style>
-.floating-contact {
+    <!-- Floating Contact Button & Login -->
+    <div class="floating-buttons">
+        <a href="/contact" class="floating-contact">Contact Us!</a>
+        <a href="#" class="floating-login" title="Client Login">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+        </a>
+    </div>
+
+    <style>
+    .floating-buttons {
     position: fixed;
-    top: 0.7rem;
-    right: 2rem;
-    background: var(--primary-color);
+    top: 0.5rem;
+    right: 1.5rem;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    z-index: 1001;
+}
+
+.floating-contact {
+    background: #6B6BFF;
     color: white;
-    padding: 0.5rem 1.25rem;
+    padding: 0.4rem 1.1rem;
     border-radius: 999px;
-    font-size: 1rem;
+    font-size: 0.875rem;
     font-weight: 500;
     text-decoration: none;
-    z-index: 1001;
-    border: 2px solid var(--primary-color);
+    border: 2px solid #6B6BFF;
     transition: all 0.2s ease;
 }
+
 .floating-contact:hover {
     background: white;
-    color: var(--primary-color);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    color: #1A1A80;
+    border-color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
-</style>
+
+.floating-login {
+    background: #6B6BFF;
+    color: #1A1A80;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    text-decoration: none;
+    border: none;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+.floating-login:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+    </style>
 </body>
 </html>
