@@ -1,41 +1,54 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import directus from '../lib/directus';
+import { readItems } from '@directus/sdk';
+
+const partnersRes = await directus.request(
+    readItems('partners', {
+        fields: ['name', 'logo', 'sort'],
+        sort: ['sort'],
+    })
+);
+const partners = partnersRes;
 ---
 
 <Layout title="City Layers - Inclusive Urban Participation Platform">
 
-    <section class="hero">
-        <div class="hero-inner">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="rotating-word-wrapper">
-                        <span class="rotating-word" id="rotatingWord">City</span>
-                    </span>
-                    <br>Layers
-                </h1>
-                <p class="hero-subtitle">Revealing Urban Complexities through everyday Experiences</p>
-                <div class="hero-cta">
-                    <a href="/contact" class="btn btn-primary">Get Started</a>
-                    <a href="/projects" class="btn btn-secondary">View Projects</a>
-                </div>
+    <section class="hero" id="hero">
+        <div class="hero-image"></div>
+        <div class="container hero-content">
+            <div class="hero-eyebrow">Kalamata · est. 2024</div>
+            <h1 class="hero-title">
+                <span class="rotor"><span id="rotor-word" class="word">City</span></span><br/>
+                Layers
+            </h1>
+            <p class="hero-subtitle">Revealing urban complexities through everyday experiences. A platform for cities that want to listen to the people who live in them.</p>
+            <div class="hero-cta">
+                <a href="/contact" class="btn btn-primary btn-large">Get started</a>
+                <a href="/projects" class="btn btn-outline-light btn-large">View projects</a>
             </div>
-            <div class="hero-visual">
-                <div class="floating-card">
-                    <div class="card-icon">🗺️</div>
-                    <h3>Interactive Mapping</h3>
-                    <p>Engage citizens through visual collaboration</p>
-                </div>
-                <div class="floating-card card-delay-1">
-                    <div class="card-icon">💬</div>
-                    <h3>Community Voice</h3>
-                    <p>Amplify local perspectives and needs</p>
-                </div>
-                <div class="floating-card card-delay-2">
-                    <div class="card-icon">📊</div>
-                    <h3>Data-Driven Insights</h3>
-                    <p>Transform feedback into actionable solutions</p>
-                </div>
-            </div>
+        </div>
+        <div class="hero-meta">
+            37.02858° N, 22.10994° E<br/>
+            Kalamata, Municipal Railway Park
+        </div>
+    </section>
+
+    <section class="partners">
+        <div class="partner-eyebrow">
+            <span>Working with cities and research partners across Europe</span>
+        </div>
+        <div class="partners-rail" id="partners-rail">
+            {/* Render 4 copies so there are always logos visible at any screen width */}
+            {[...Array(4)].map(() =>
+                partners.map((partner) => (
+                    <img
+                        class="partner-logo"
+                        src={`${import.meta.env.PUBLIC_DIRECTUS_URL}/assets/${partner.logo}`}
+                        alt={partner.name}
+                    />
+                ))
+            )}
         </div>
     </section>
 
@@ -131,45 +144,275 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
-.rotating-word-wrapper {
-    display: inline-block;
+/* ── Hero ───────────────────────────────────────────────── */
+.hero {
+    position: relative;
+    min-height: 760px;
+    color: #fff;
     overflow: hidden;
-    vertical-align: bottom;
-    min-width: 600px;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 96px;
+    padding-top: 140px;
+    z-index: 1;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
 }
 
-.rotating-word {
-    display: inline-block;
+.hero-image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: url('/CL-Hero Image.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg,
+            rgba(14,14,77,0.40) 0%,
+            rgba(14,14,77,0.20) 40%,
+            rgba(14,14,77,0.78) 100%),
+        linear-gradient(110deg,
+            rgba(14,14,77,0.55) 0%,
+            rgba(14,14,77,0.05) 60%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 920px;
+    margin-left: 0;
+    margin-right: auto;
+    text-align: left;
+}
+
+.hero-eyebrow {
     font-family: 'Figtree', sans-serif;
-    background: linear-gradient(135deg, rgb(107, 107, 255) 0%, rgb(88, 152, 232) 45%, rgb(96, 212, 192) 100%);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+}
+
+.hero-eyebrow::before {
+    content: "";
+    display: block;
+    width: 36px;
+    height: 1px;
+    background: rgba(255,255,255,0.5);
+}
+
+.hero-title {
+    font-family: 'Figtree', sans-serif;
+    font-size: clamp(48px, 9vw, 128px);
+    font-weight: 600;
+    letter-spacing: -0.034em;
+    line-height: 0.96;
+    color: #fff;
+    margin: 0;
+    overflow: visible;
+}
+
+.rotor {
+    display: inline-block;
+    position: relative;
+    white-space: nowrap;
+}
+
+.word {
+    display: inline-block;
+    background: linear-gradient(95deg, #82A8FF 0%, #7BC5FF 45%, #82E6D3 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: fadeSlide 0.5s ease forwards;
+    padding-bottom: 0.12em;
+    padding-right: 0.1em;
+    transition: opacity 600ms ease, transform 600ms ease, filter 600ms ease;
+    will-change: opacity, transform;
 }
 
-@keyframes fadeSlide {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.word.out {
+    opacity: 0;
+    transform: translateY(-12px);
+    filter: blur(4px);
+}
+
+.word.in {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(4px);
+}
+
+.hero-subtitle {
+    font-family: 'Figtree', sans-serif;
+    font-size: clamp(18px, 1.6vw, 22px);
+    font-weight: 300;
+    color: rgba(255,255,255,0.84);
+    margin: 36px 0 0;
+    max-width: 640px;
+    line-height: 1.4;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 14px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.btn-outline-light {
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.5);
+}
+
+.btn-outline-light:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.9);
+}
+
+.hero-meta {
+    position: absolute;
+    right: 32px;
+    bottom: 32px;
+    z-index: 1;
+    font-family: 'Figtree', sans-serif;
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+    text-align: right;
+    line-height: 1.6;
+    letter-spacing: 0.04em;
+}
+
+/* ── Partners marquee ───────────────────────────────────── */
+.partners {
+    position: relative;
+    background: #ffffff;
+    padding: 28px 0;
+    overflow: hidden;
+}
+
+.partner-eyebrow {
+    font-family: 'Figtree', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+.partner-eyebrow span {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.partner-eyebrow span::before,
+.partner-eyebrow span::after {
+    content: "";
+    width: 36px;
+    height: 1px;
+    background: var(--gray-300);
+}
+
+.partners-rail {
+    display: flex;
+    align-items: center;
+    gap: 64px;
+    width: max-content;
+}
+
+.partner-logo {
+    height: 64px;
+    width: auto;
+    max-width: 140px;
+    object-fit: contain;
+    opacity: 0.8;
+    flex-shrink: 0;
+    transition: opacity 0.2s ease;
+}
+
+.partner-logo:hover {
+    opacity: 1;
+}
+
+/* Edge fades */
+.partners::before,
+.partners::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.partners::before {
+    left: 0;
+    background: linear-gradient(90deg, #ffffff, transparent);
+}
+
+.partners::after {
+    right: 0;
+    background: linear-gradient(-90deg, #ffffff, transparent);
 }
 </style>
 
 <script is:inline>
-const words = ["City", "Mobility", "Safety", "Nature", "Experience"];
-let current = 0;
+/* ── Partners marquee ───────────────────────────────────── */
+window.addEventListener('load', () => {
+    const rail = document.getElementById('partners-rail');
+    if (!rail) return;
+
+    // One "set" is 1/4 of total logos (we rendered 4 copies)
+    const oneSet = rail.scrollWidth / 4;
+    let pos = 0;
+    const speed = 0.5;
+
+    function tick() {
+        pos += speed;
+        if (pos >= oneSet) {
+            pos = 0;
+        }
+        rail.style.transform = `translateX(-${pos}px)`;
+        requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+});
+
+/* ── Rotating word ──────────────────────────────────────── */
+const WORDS = ['City', 'Mobility', 'Safety', 'Nature', 'Experience'];
+let idx = 0;
 
 setInterval(() => {
-    current = (current + 1) % words.length;
-    const el = document.getElementById('rotatingWord');
-    el.style.animation = 'none';
-    el.offsetHeight;
-    el.textContent = words[current];
-    el.style.animation = 'fadeSlide 0.8s ease forwards';
-}, 2000);
+    const el = document.getElementById('rotor-word');
+    if (!el) return;
+
+    el.classList.add('out');
+
+    setTimeout(() => {
+        idx = (idx + 1) % WORDS.length;
+        el.textContent = WORDS[idx];
+        el.classList.remove('out');
+        el.classList.add('in');
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            el.classList.remove('in');
+        }));
+    }, 600);
+}, 2500);
 </script>
